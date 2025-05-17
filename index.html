@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>高二（xx）班点名板</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <style>
         html,
         body {
@@ -120,20 +121,6 @@
 
             100% {
                 opacity: 1;
-            }
-        }
-
-        @keyframes fade {
-
-            0%,
-            25% {
-                background: #3F51B5;
-                color: #fff;
-            }
-
-            100% {
-                background: #C5CAE9;
-                color: #000;
             }
         }
 
@@ -347,7 +334,7 @@
 
         .github {
             position: absolute;
-            left: 80px;
+            right: 120px;
             bottom: 64px;
             animation: opacify 0.2s 2s forwards;
             opacity: 0;
@@ -365,12 +352,14 @@
 
         .author {
             position: absolute;
-            bottom: 24px;
-            transform: translateY(50%);
-            width: 100%;
-            text-align: center;
+            left: 88px;
+            bottom: 68px;
             animation: opacify 0.2s 2s forwards;
             opacity: 0;
+        }
+
+        .author img {
+            height: 24px;
         }
 
         a {
@@ -402,7 +391,7 @@
     <div class="btn-icon fullscreen" onclick="toggleFullScreen();"><img src="./icons/fullscreen.svg"></div>
     <div class="btn-icon github"><a href="https://github.com/BGStudio2021/RollCallBoard" target="_blank"><img
                 src="./icons/github.svg"></a></div>
-    <div class="author">Made by Burger Studio.</div>
+    <div class="author"><img src="icons/Burger-Logo-20250517.svg"></div>
     <script>
         let nameList = [
             "张三", "李四", "王五", "赵六", "钱七", "孙八", "周九", "吴十", "郑十一", "王十二",
@@ -522,14 +511,12 @@
                 // 显示抽取结果
                 document.querySelectorAll(".name").forEach((nameDiv) => {
                     if (nameArr.includes(nameDiv.innerText)) {
-                        // nameDiv.style.background = "#3F51B5";
-                        // nameDiv.style.color = "#fff";
                         nameDiv.classList.add("name-highlighted");
                     } else if (drawnNameArr.includes(nameDiv.innerText) && showDrawn) {
                         nameDiv.style.background = "#C8E6C9";
                         nameDiv.style.color = "#000";
                     } else {
-                        nameDiv.style.animation = "fade 0.5s linear forwards";
+                        nameDiv.style.animation = "none";
                     }
                 });
             }, 2250);
