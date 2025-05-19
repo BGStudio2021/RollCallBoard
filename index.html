@@ -200,6 +200,10 @@
             }
         }
 
+        .draw-num {
+            margin: 4px 0;
+        }
+
         .reduce-num,
         .draw-num-text,
         .increase-num {
@@ -274,6 +278,24 @@
             background: #7986CB !important;
         }
 
+        .draw-name:not(:disabled) {
+            animation: outline 2s 2.2s infinite;
+        }
+
+        @keyframes outline {
+            0% {
+                outline: 0px solid #3F51B5;
+            }
+
+            75% {
+                outline: 16px solid rgba(0, 0, 0, 0);
+            }
+
+            100% {
+                outline: 16px solid rgba(0, 0, 0, 0);
+            }
+        }
+
         @keyframes shake {
             0% {
                 transform: translate(0, 0);
@@ -324,20 +346,25 @@
             background: rgba(0, 0, 0, 0.4);
         }
 
+        .github,
+        .bgm,
         .fullscreen {
             position: absolute;
-            right: 80px;
             bottom: 64px;
             animation: opacify 0.2s 2s forwards;
             opacity: 0;
         }
 
         .github {
-            position: absolute;
+            right: 160px;
+        }
+
+        .fullscreen {
+            right: 80px;
+        }
+
+        .bgm {
             right: 120px;
-            bottom: 64px;
-            animation: opacify 0.2s 2s forwards;
-            opacity: 0;
         }
 
         @keyframes opacify {
@@ -384,13 +411,14 @@
             </div>
             <button class="btn btn-secondary show-drawn" onclick="toggleShowDrawn();"></button>
             <button class="btn draw-name" onclick="drawName();"
-                style="margin-left: 8px;margin-right: 8px;">开始抽取</button>
+                style="margin-left: 16px;margin-right: 16px;">开始抽取</button>
             <button class="btn btn-secondary show-drawn" onclick="resetDrawn();">重置已抽取</button>
         </div>
     </div>
-    <div class="btn-icon fullscreen" onclick="toggleFullScreen();"><img src="./icons/fullscreen.svg"></div>
     <div class="btn-icon github"><a href="https://github.com/BGStudio2021/RollCallBoard" target="_blank"><img
                 src="./icons/github.svg"></a></div>
+    <div class="btn-icon bgm" onclick="toggleBgm();"><img src="./icons/music_off.svg"></div>
+    <div class="btn-icon fullscreen" onclick="toggleFullScreen();"><img src="./icons/fullscreen.svg"></div>
     <div class="author"><img src="icons/Burger-Logo-20250517.svg"></div>
     <script>
         let nameList = [
@@ -593,6 +621,19 @@
             document.querySelectorAll(".name-highlighted").forEach((nameDiv) => {
                 nameDiv.classList.remove("name-highlighted");
             });
+        }
+        // 打开 / 关闭背景音乐
+        const bgmIcon = document.querySelector(".bgm img");
+        let bgmAudio = new Audio("./Connected-Sky.mp3");
+        bgmAudio.loop = true;
+        function toggleBgm() {
+            if (bgmAudio.paused) {
+                bgmAudio.play();
+                bgmIcon.src = "./icons/music_note.svg";
+            } else {
+                bgmAudio.pause();
+                bgmIcon.src = "./icons/music_off.svg";
+            }
         }
     </script>
 </body>
